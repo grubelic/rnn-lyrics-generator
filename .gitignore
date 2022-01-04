@@ -130,3 +130,9 @@ dmypy.json
 
 # csv datasets
 *.csv
+
+# LaTex stuff
+/documentation/*.aux
+/documentation/*.log
+/documentation/*.pdf
+
