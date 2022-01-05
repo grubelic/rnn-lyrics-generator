@@ -14,8 +14,9 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Generiranje tekstova pjesama pomoću rekurzivnih neuronskih mreža\\
-{\footnotesize Projekt na predmetu \textit{Neuronske mreže} na FER-u}
+\title{Generating song lyrics using recurrent neural networks\\
+{\footnotesize Project for the course \textit{Neural Networks} at Faculty of
+Electrical Engineering and Computing, University of Zagreb}
 }
 
 \author{
@@ -41,28 +42,33 @@
 \maketitle
 
 \begin{abstract}
-Ovaj dokument sadrži izvještaj s projekta za predmet Neuronske mreže. Opisuje
-kako je implementirana rekurzivna neuronska mreža (Keras framework) pomoću koje se
-iz dobivenog skupa tekstova pjesama mogu generirati nove pjesme.
+This document is a project report for the Neural Networks course at Faculty of
+Electrical Engineering and Computing in Zagreb. It describes an implementation
+of a recursive neural network which is used for generating song lyrics based
+on given set of song lyrics.
 \end{abstract}
 
 \begin{IEEEkeywords}
-RNN, neuronske mreže, generiranje tekstova pjesama
+RNN, neural networks, generating song lyrics
 \end{IEEEkeywords}
 
-\section{Uvod}
-U doba kad se sve više poslova automatizira, pogotovo sad uz porast popularnosti
-raznih metoda strojnog učenja, nastoji se postići i da računalo piše pjesme.\\
-Cilj je trenirati model na poznatim tekstovima pjesama, a onda ga koristiti za
-stvaranje novog teksta pjesme. Tekstovi generiranih pjesama ne bi trebali biti
-od riječi do riječi jednaki onima na kojima je model trenirao. Ipak, ne bi imalo
-smisla ni da generira neke nasumične riječi. Cilj je da model "upamti" riječi
-pjesama na kojima trenira, tj. motive i da ih kombinira, ali smisleno, tj. da
-model "upamti" i međusobne odnose, tj. poredak riječi. To se u ovom projektu
-postiže korištenjem rekurzivnih neuronskih mreža (RNN). 
+\section{Introduction}
+Since more and more jobs being automated, especially now with rise of popularity
+of various machine learning methods, there is also an initiative aimed at
+computers writng songs.\\
+The goal is to feed a model with lyrics of existing songs and then to use it for
+generating new lyrics. Those generated song lyrics aren't supposed to be
+word-for-word equal to those used for training the model. Still, it wouldn't be
+sensible having it generate random words, either. The goal is having the model 
+memorize the lyrics of the songs it is trained on (motifs) and then combine them
+\textit{sensibly}, i.e. having the model memorize "relationships" between the
+words through their relative order.
+In this project, it is being done using recursive neural networks (RNN), which
+are able to take in account previous outputs when generating new one, thus
+adding temporality. 
 % Dodati koji je dataset korišten i kako je analiziran
 
-\section{Postojeća rješenja i kratki pregled literature} % preimenovati ako treba
+\section{Existing solutions and brief literature overview} % preimenovati ako treba
 
 \subsection{Maintaining the Integrity of the Specifications}
 
