@@ -1,16 +1,18 @@
+from pprint import pprint
+
 import loader
 import pandas as pd
+from keras.preprocessing.text import Tokenizer
 
 
 def print_weird_stuff(df: pd.DataFrame) -> None:
     # work in progress
-    for text in df.lyrics:
-        for word in text.strip().split():
+    for index, row in df.iterrows():
+        for word in row.lyrics.strip().split():
             w: str = word.replace('\'', '')
-            if w.isalpha()\
-                or w.endswith('.') or w.endswith(',') or w.endswith('?'):
+            if w.isalpha() or w.endswith('.') or w.endswith(',') or w.endswith('?'):
                 continue
-            print(w)
+            print(w, row.artist)
 
 
 def print_artists(df: pd.DataFrame) -> None:
@@ -27,13 +29,20 @@ def get_song_names_by(df: pd.DataFrame, artist: str) -> pd.Series:
 
 if __name__ == "__main__":
     # loader.replace_in_file(loader.KAGGLE_POETRY_PATH, b"\r", b"")
-    # data = loader.load_kaggle_poetry()
-    # lyrics = get_lyrics(data, "Connie Wanek", "Hartley Field")
+    # loader.replace_in_file(loader.KAGGLE_150K_PATH, b"\r", b"")
+    data = loader.load_kaggle_poetry()
+    lyrics = get_lyrics(data, "Connie Wanek", "Hartley Field")
     # print(lyrics)
     # print([it if it.isalpha() else ord(it) for it in lyrics])
-    data = loader.load_kaggle_150k()
+    # data = loader.load_kaggle_150k()
+    # lyrics = get_lyrics(data, "LL Cool J", "#1 Fan")
+    t = Tokenizer()
+    t.fit_on_texts([lyrics])
+    print(lyrics)
+    pprint(t.word_index)
     # print(get_song_names_by(data, "Eminem"))
     # print(get_lyrics(data, "Eminem", "Infinite"))
-    print_weird_stuff(data)
+    # print([it if it.isalpha() else ord(it) for it in get_lyrics(data, "Phoebe Bridgers", "Motion Sickness")])
+    # print_weird_stuff(data)
 
 
