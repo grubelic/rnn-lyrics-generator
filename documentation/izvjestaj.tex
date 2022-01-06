@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage[super]{nth}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -53,9 +54,10 @@ RNN, neural networks, generating song lyrics
 \end{IEEEkeywords}
 
 \section{Introduction}
-Since more and more jobs being automated, especially now with rise of popularity
+Writing meaningful lyrics has always been a challenge even to the best of songwriters.
+Since more and more jobs are being automated, especially now with rise of popularity
 of various machine learning methods, there is also an initiative aimed at
-computers writng songs.\\
+computers writing songs.
 The goal is to feed a model with lyrics of existing songs and then to use it for
 generating new lyrics. Those generated song lyrics aren't supposed to be
 word-for-word equal to those used for training the model. Still, it wouldn't be
@@ -68,17 +70,38 @@ are able to take in account previous outputs when generating new one, thus
 adding temporality. 
 % Dodati koji je dataset korišten i kako je analiziran
 
-\section{Existing solutions and brief literature overview} % preimenovati ako treba
+\section{Existing solutions and brief literature overview}
 
-\subsection{Maintaining the Integrity of the Specifications}
+\subsection{Automatic Rap Lyrics Generation}
+Variation of RNN called LSTM architecture creates a better language model than a regular RNN. \cite{b1}
+According to Potash, Romanov and Rumshisky, Long Short-Term Memory (LSTM) language model
+produces better lyrics than a baseline model. They attempted to piece together lyrics for a specific artist, but
+their model was limited in generating lyrics for a genre. As a result of training their model with sets of lyrics, they
+noticed corresponding rhyming words. \vspace{2.5mm}
 
-The IEEEtran class file is used to format your paper and style the text. All margins, 
-column widths, line spaces, and text fonts are prescribed; please do not 
-alter them. You may note peculiarities. For example, the head margin
-measures proportionately more than is customary. This measurement 
-and others are deliberate, using specifications that anticipate your paper 
-as one part of the entire proceedings, and not as an independent document. 
-Please do not revise any of the current designations.
+Another example of A Rap Lyrics Generator was developed by Nguyen and Sa \cite{b2}.
+They used database of approximately 40000 existing rap lyrics. After failure to get profound results when using 
+linear-interpolated trigram model approach, they shifted to a quadgram model. Also, they succeeded to generate sentences 
+that rhyme with each other. At the end, generator worked decently, but the content of the lyrics did not relate to a specific theme.
+
+\subsection{Automatic Generation of Poems}
+Wishful Automatic Spanish Poet was the first generating program for poems which used artificial intelligence and natural language
+generation techniques together. The whole system of WASP is based on a forward reasoning ruled-based system.
+Users were asked for inputs which were then used as seeds and results recieved were not very efficient in generating lyrics \cite{b3}.
+
+\subsection{Rhyme Detection}
+Hirjee and Brown have developed a probabilistic model and in addition to it they have built up a rhyme detection tool based on that model \cite{b4} \cite{b5}.
+Tool analyzes phoneme patterns in words and model is trained on a set of lyrics that were manually annotated for rhyming words.
+
+\subsection{Classification of Lyrics}
+Mayer, Neumayer and Rauber used rhyme and style features to classify and process lyrics \cite{b6}. 
+They followed the fact that a rhyme is two words that when spelt sound similar and generally used it for words at the end of verses.
+
+\subsection{Natural Language Processing and Lyrics Generation}
+With basic natural language processing tools, song lyrics can be analysed by using a Naive Bayes classifier. Mahedero, Cano and Martinez used that to 
+identify languages. Also, they used it for classification based on themes and to search for similarities between them. 
+The languages which were used for the experiment: English, Spanish, German, French and Italian. Given results were approximately 94\% accurate.
+The conclusion they came to is that the identification of languages was easier task compared to the others.
 
 \section{Prepare Your Paper Before Styling}
 Before you begin to format your paper, first write and save the content as a 
@@ -271,13 +294,19 @@ For papers published in translation journals, please give the English
 citation first, followed by the original foreign-language citation \cite{b6}.
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
+\bibitem{b1} P. Potash, A. Romanov, and A. Rumshisky, GhostWriter: Using an LSTM for Automatic Rap Lyric Generation. In: \emph{Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing}, 2015.
+\bibitem{b2} H. Nguyen, and B. Sa, Rap Lyrics Generator, unpublished, 2009.
+\bibitem{b3} H. Manurung, G. Ritchie, and H. Thompson, Towards a Computational Model of Poetry Generation. In: \emph{Proceedings of AISB Symposium on Creative and Cultural Aspects and Applications of AI and Cognitive Science}, pp. 79-86, April 2000.
+\bibitem{b4} H. Hirjee, and D. Brown, Using automated rhyme detection to characterize rhyming style in rap music, 2010.
+\bibitem{b5} H. Hirjee, and D. Brown, Rhyme analyzer: An analysis tool for rap lyrics. In: \emph{Proceedings of the 11th International Society for Music Information Retrieval Conference}, 2010.
+\bibitem{b6} R. Mayer, R. Neumayer, and A. Rauber, Rhyme and Style Features for Musical Genre Classification by Song Lyrics. In: \emph{ISMIR 2008, \nth{9} International Retrieval, 14-18 September, 2008, Drexel University, Philadelphia, PA, USA}.
+
 \bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\bibitem{b8} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
+\bibitem{b9} K. Elissa, ``Title of paper if known,'' unpublished.
+\bibitem{b10} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
+\bibitem{b11} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
+
 \end{thebibliography}
 \vspace{12pt}
 \color{red}
