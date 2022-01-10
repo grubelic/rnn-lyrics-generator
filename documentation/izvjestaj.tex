@@ -54,10 +54,10 @@ RNN, neural networks, generating song lyrics
 \end{IEEEkeywords}
 
 \section{Introduction}
-Writing meaningful lyrics has always been a challenge even to the best of songwriters.
-Since more and more jobs are being automated, especially now with rise of popularity
-of various machine learning methods, there is also an initiative aimed at
-computers writing songs.
+Writing meaningful lyrics has always been a challenge even to the best of
+songwriters. Since more and more jobs are being automated, especially now with
+the rise of popularity of various machine learning methods, there is also an
+initiative aimed at computers writing songs.
 The goal is to feed a model with lyrics of existing songs and then to use it for
 generating new lyrics. Those generated song lyrics aren't supposed to be
 word-for-word equal to those used for training the model. Still, it wouldn't be
@@ -145,27 +145,49 @@ Those numbers (tokenized words) have been grouped into sequences of
 length of the longest sequence with zeros. The last number in each sequence
 would later be expected output for the input which is the rest of the sequence.
 
+\subsection{Building the models}
+Napisati kakve smo modele imali: kako rade layeri i zašto imamo te
+Npr kako radi LSTM i zašto je bolji od vanilla RNN-a
 
-
-\subsection{Building a model}
-
-
-\subsection{Training the model}
+\subsection{Training the models}
+Na koliko epoha smo trenirali modele, kako radi loss i zašto to?
 
 \subsection{Generating the lyrics}
+Kako su generirani tekstovi (ovo mogu ja)
 
 \subsection{Evaluation of the generated lyrics}
+The measure of the model fitness during the training has been "how well the
+model reproduces the lyrics it was given". However, the goal isn't to reproduce
+the same lyrics that already exist, but to generate \textit{new} meaningful
+songs. Teško je napraviti takvu mjeru i ni drugi često to evaluiraju ručno.
+Nastaviti s mjerom/mjerama koju ćemo koristiti i zašto ta mjera
 
+Kako radi mjera lyricsassessora (link u .tex komentaru) se može vidjeti nakon
+što se pjesma pošalje na evaluaciju
+%https://www.thelyricassessor.com/
 
-
-%baciti u grammarly
+%baciti sve u grammarly
 
 \section{Project results}
-Comparison of our results: architecture, epochs and artist (in \ref{APDX})
-\section{Comparison of results}
-Add comparison with the character-based approach
-\subsection{Conclusion}
-What was done, what could have been tried etc.
+Comparison of our results: architecture, epochs and artist (in \ref{A1})
+Usporedba po mjeri koju smo odabrali (može i kakvi se nama čine)
+\subsection{Comparison by architecture}
+Usporediti sve arhitekture na 80 epoha i nabaciti pretpostavku zašto je kako je.
+Linkati lyricse koji su u Appendixu \ref{APDX}
+\subsection{Comparison by epoch}
+Usporediti generalno kako lyricsi zvuče na manje, odnosno više epoha i pokazati
+da to vrijedi za različite arhitekture.
+Kako se mijenjala dobrota lyricsa prema loss funkciji
+\subsection{Comparison by artist}
+Za dva artista oko kojih se dogovorimo: dvaput natreniramo onu arhitekturu koja
+daje najbolje rezultate na broj epoha koji daje najbolje rezultate.
+\section{Comparison with existing solutions}
+Add comparison with the character-based approach - dodati u literaturu
+Možda usporedba s još nečim iz literature ili od nekud (nije prioritet)?
+Usporedba i pristupa i rezultata!
+\section{Conclusion}
+What was done, what could have been tried, possible additional work it enables
+etc. How satisfied are we with the results.
 % apostrofi - mogli smo ih pretvoriti u prave riječi bez apostrofa
 % smanjenje broja memoriziranih riječi u tokenizeru po učestalosti
 % probati bez n-grama? Fiksan broj riječi umjesto linija?
@@ -219,7 +241,26 @@ quantities and units. For example, write ``Temperature (K)'', not
 ``Temperature/K''.
 
 
-\section*{Appendix}\label{APDX}
+\section{Appendix}\label{APDX}
+
+Ovdje ubacivati tekstove, subsectioni s labelama za referiranje.
+Svaki subsection jedna "pjesma"
+
+\subsection{Simple LSTM - 20th epoch}\label{LSTM20}
+\subsection{Simple LSTM - 50th epoch}\label{LSTM50}
+\subsection{Simple LSTM - 80th epoch}\label{LSTM80}
+\subsection{Simple LSTM - 110th epoch}\label{LSTM110}
+\subsection{Simple RNN - 20th epoch}\label{RNN20}
+\subsection{Simple RNN - 50th epoch}\label{RNN50}
+\subsection{Simple RNN - 80th epoch}\label{RNN80}
+\subsection{Simple RNN - 110th epoch}\label{RNN110}
+\subsection{LSTM (Hidden Layer) - 20th epoch}\label{HID20}
+\subsection{LSTM (Hidden Layer) - 50th epoch}\label{HID50}
+\subsection{LSTM (Hidden Layer) - 80th epoch}\label{HID80}
+\subsection{LSTM (Hidden Layer) - 110th epoch}\label{HID110}
+
+\subsection{Artist 1}\label{A1}
+\subsection{Artist 2}\label{A2}
 
 \section*{References}
 
