@@ -134,4 +134,8 @@ dmypy.json
 # LaTex stuff
 /documentation/*.aux
 /documentation/*.log
+/documentation/*.png
+/documentation/*.pdf
+/documentation/*.jpg
+/documentation/*.jpeg
 
