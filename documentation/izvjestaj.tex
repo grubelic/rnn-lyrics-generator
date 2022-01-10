@@ -108,9 +108,9 @@ The conclusion they came to is that the identification of languages was easier t
 Since generating the lyrics requires memorizing word ordering so that lyrics
 make sense, RNNs have been used, as that class of neural networks is better for
 memorizing sequences. Sequences used as RNN inputs can be words as well as
-characters and based on those two approaches, two types of models have been
-implemented --- word-based and character-based --- to generate lyrics based on
-the same dataset.
+characters. In this project, the word-based model has been used, so that
+all generated lyrics use existing words and the RNN doesn't have to memorize
+character ordering inside the words on top of word order.
 
 \subsection{Choosing the right dataset}
 The lyrics needed for training such model can be scraped using the webscrapers on
@@ -131,9 +131,9 @@ everything inside square brackets has been removed from the lyrics to
 reduce cluttering with info that may not be correct in generated lyrics and
 would interfere with memorizing relationships of words and motiffs.
 
-In the \textbf{word-based approach}, however, similar interference was made in
+However, another kind of interference was made in
 order to memorize line endings. The "word" \textit{endl} has been added to the
-end of each line. That is supposed to help with rhyming and breaking lines of
+end of each line in order to help with rhyming and breaking lines of
 generated songs in meaningful places.
 
 After adding the \textit{endl}, each word from the dataset has been stripped of
@@ -143,14 +143,8 @@ number that would be used as network input.
 Those numbers (tokenized words) have been grouped into sequences of 
 \textbf{up to} $n$ lines, i.e. verses. The sequences have been padded to the
 length of the longest sequence with zeros. The last number in each sequence
-would later be expected output for the input --- the beginning of the sequence.
+would later be expected output for the input which is the rest of the sequence.
 
-Similarly, in the \textbf{character-based approach}, the characters, instead of
-words, were then converted to numbers. There already was a newline character so
-line breaks were already covered. The converted characters have then been
-grouped into \textbf{exactly} $m$ elements long sequences which were grouped
-into batches for training. The last number in each sequence would later be
-expected output for the input --- the beginning of the sequence.
 
 
 \subsection{Building a model}
@@ -167,8 +161,9 @@ expected output for the input --- the beginning of the sequence.
 %baciti u grammarly
 
 \section{Project results}
+Comparison of our results: architecture, epochs and artist (in \ref{APDX})
 \section{Comparison of results}
-By: architecture, epochs, artist and approach (in \ref{APDX})
+Add comparison with the character-based approach
 \subsection{Conclusion}
 What was done, what could have been tried etc.
 % apostrofi - mogli smo ih pretvoriti u prave riječi bez apostrofa
@@ -179,20 +174,11 @@ What was done, what could have been tried etc.
 % u zaključak - kaj bi se još moglo
  
 
-\section{Team member assignments and tentative time schedule}
-\subsection{Team member assignments}
-\begin{itemize}
-    \item \textbf{Ena Car:}
-    \item \textbf{Pavao Dužević:}
-    \item \textbf{Damjan Grubelić:}
-    \item \textbf{Josipa Kaselj:}
-    \item \textbf{Magdalena Šimunec:}
-    \item \textbf{Eva Šmuc:}
-\end{itemize}
-\subsection{Tentative time schedule}
 
 \subsection{Figures and Tables}
-\paragraph{Positioning Figures and Tables} Place figures and tables at the top and 
+\paragraph{Positioning Figures and Tables} 
+Ovo je ostavljeno samo kako bi se kasnije moglo lakše kopirati ako treba.
+Place figures and tables at the top and 
 bottom of columns. Avoid placing them in the middle of columns. Large 
 figures and tables may span across both columns. Figure captions should be 
 below the figures; table heads should appear above the tables. Insert 
