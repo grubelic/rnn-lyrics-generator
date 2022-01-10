@@ -146,8 +146,17 @@ length of the longest sequence with zeros. The last number in each sequence
 would later be expected output for the input which is the rest of the sequence.
 
 \subsection{Building the models}
-Napisati kakve smo modele imali: kako rade layeri i zašto imamo te
-Npr kako radi LSTM i zašto je bolji od vanilla RNN-a
+Three different architectures of neural network have been used in order
+to determine which one would provide the best results.
+Basic network architecture consists of an input layer, one or multiple hidden layers and an output layer.
+First architecture consists of one hidden SimpleRNN layer, which is a fully-connected RNN where the output is to be fed back to input.
+Second architecture has an LSTM as a hidden layer and a Dropout layer in order to prevent overfitting.
+The third and most complex rchitecture consists of one Bidirectional LSTM layer, a Dropout layer in order to prevent overfitting,
+LSTM layer and two densely-connected NN layers.
+
+The softmax function is used as the activation function in the output layer of all the neural network models 
+since they predict a multinomial probability distribution. 
+Adam optimizer was used since it achieves good results faster than classical stochastic gradient descent optimizer.
 
 \subsection{Training the models}
 Na koliko epoha smo trenirali modele, kako radi loss i zašto to?
