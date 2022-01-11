@@ -191,10 +191,40 @@ Kako se mijenjala dobrota lyricsa prema loss funkciji
 Za dva artista oko kojih se dogovorimo: dvaput natreniramo onu arhitekturu koja
 daje najbolje rezultate na broj epoha koji daje najbolje rezultate.
 %Dylanometer
+
+
 \section{Comparison with existing solutions}
-Add comparison with the character-based approach - dodati u literaturu
-Možda usporedba s još nečim iz literature ili od nekud (nije prioritet)?
-Usporedba i pristupa i rezultata!
+For comparison, we have used an already existing project with a character-based approach with mild modifications.
+
+The important difference from our solution is that this network must learn words and the order of the letters to get a meaningful word.
+Also, has to learn the order between the words.
+
+The project uses the Sequential model which is one way of creating deep learning models. 
+It is convenient to use when each layer has only one input tensor and one output
+tensor. The Sequential model is defined by passing a list of layers to the Sequential
+constructor.
+
+Firstly, words are presented as vectors that need to be evaluated to match
+something meaningful and that is done by calling embedding. Embedding turns positive integers
+into dense vectors of fixed size. 
+
+After that, Gated Recurrent Units (GRU) is used to remember
+a certain number of previous words in a clever way (rnn\_units). GRU is used as a closing mechanism in 
+RNN (something like LSTM, but with fewer parameters). 
+
+Finally, a dense layer is a deeply connected layer
+from its preceding layer which works for changing the dimension of the output by
+performing matrix-vector multiplication and gives information about the most probable word that
+is expected.
+
+We used similar parameters and architectures as with our model for comparison. 
+The most noticeable disadvantage is that some words do not make sense, that is, we can call them ''garbage''.
+
+An important parameter when generating lyrics is \textbf{temperature}. Low temperature will produce predictable results, but with 
+higher temperature lyrics will become more creative.
+
+Dodati još rezultate treniranja kad Magdalena istrenira.
+
 \section{Conclusion}
 What was done, what could have been tried, possible additional work it enables
 etc. How satisfied are we with the results.
