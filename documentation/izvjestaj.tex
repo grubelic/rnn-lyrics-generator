@@ -165,7 +165,20 @@ Song lyrics were generated after each training period.
 The lyrics of each generated song, the corresponding architecure and number of epochs can be found in the Appendix VII.
 
 \subsection{Generating the lyrics}
-Kako su generirani tekstovi (ovo mogu ja)
+The lyrics are being generated line by line, with tokenized words from $n$
+previous lines as the input for the model. Model then predicts for each unique
+word from the corpus how likely it is to appear next. That word is added to
+the song and then the model makes a new prediction for the next word with the
+last one added to the input.
+
+Since lyrics tend to be repetitive, especially after overfitting, the model may
+fall in loop predicting the same lyrics over and over. That's why the
+genrating function explicitly prevents two lines starting with the same word
+by picking the second word that is the most likely to appear. It also reduces
+the impact of overfitting by memorizing the exact lyrics from dataset:
+
+Any song with identical words at the start of two close lines cannot be exactly
+reproduced by the generator.
 
 \subsection{Evaluation of the generated lyrics}
 The measure of the model fitness during the training has been "how well the
