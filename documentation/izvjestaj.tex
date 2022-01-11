@@ -146,20 +146,23 @@ length of the longest sequence with zeros. The last number in each sequence
 would later be expected output for the input which is the rest of the sequence.
 
 \subsection{Building the models}
-Three different architectures of neural network have been used in order
-to determine which one would provide the best results.
+Three different architectures of neural network have been used in order to determine which one would provide the best results.
 Basic network architecture consists of an input layer, one or multiple hidden layers and an output layer.
+
 First architecture consists of one hidden SimpleRNN layer, which is a fully-connected RNN where the output is to be fed back to input.
+
 Second architecture has an LSTM as a hidden layer and a Dropout layer in order to prevent overfitting.
-The third and most complex rchitecture consists of one Bidirectional LSTM layer, a Dropout layer in order to prevent overfitting,
-LSTM layer and two densely-connected NN layers.
+
+The third and most complex architecture consists of one Bidirectional LSTM layer, a Dropout layer in order to prevent overfitting, LSTM layer and two densely-connected NN layers.
 
 The softmax function is used as the activation function in the output layer of all the neural network models 
 since they predict a multinomial probability distribution. 
 Adam optimizer was used since it achieves good results faster than classical stochastic gradient descent optimizer.
 
 \subsection{Training the models}
-Na koliko epoha smo trenirali modele, kako radi loss i zašto to?
+Each model was trained for a period of 20, 50, 80 and 110 epochs in order to determine when underfitting and overfitting happens. 
+Song lyrics were generated after each training period.
+The lyrics of each generated song, the corresponding architecure and number of epochs can be found in the Appendix VII.
 
 \subsection{Generating the lyrics}
 Kako su generirani tekstovi (ovo mogu ja)
@@ -167,22 +170,46 @@ Kako su generirani tekstovi (ovo mogu ja)
 \subsection{Evaluation of the generated lyrics}
 The measure of the model fitness during the training has been "how well the
 model reproduces the lyrics it was given". However, the goal isn't to reproduce
-the same lyrics that already exist, but to generate \textit{new} meaningful
-songs. Teško je napraviti takvu mjeru i ni drugi često to evaluiraju ručno.
-Nastaviti s mjerom/mjerama koju ćemo koristiti i zašto ta mjera
+the same lyrics that already exist, but to generate \textit{new} meaningful songs. 
 
-Kako radi mjera lyricsassessora (link u .tex komentaru) se može vidjeti nakon
-što se pjesma pošalje na evaluaciju
-%https://www.thelyricassessor.com/
-
-%baciti sve u grammarly
+As part of our evaluation, we used The Lyric Assessor.
+The Lyric Assessor is calibrated using the lyrics of 295 songs that are cited by songwriters as being examples of well-crafted songs. It scores the lyrics with a number ranging form -5 to 5. 
+Scores above zero (maximum = 5) indicate that the lyrics are linguistically more like lyrics often mentioned as archetypically well-crafted songs by songwriters.
+Scores below zero (minimum = -5) indicate that the lyrics are linguistically less like lyrics often mentioned as archetypically well-crafted songs by songwriters.
+The Lyric Assessor has an accuracy of approximately 80\%. It uses computational linguistics to compare lyrics with a corpus of songs regarded as "well-crafted" by songwriters and with a corpus of songs not so regarded by songwriters.
 
 \section{Project results}
-Comparison of our results: architecture, epochs and artist (in \ref{A1})
-Usporedba po mjeri koju smo odabrali (može i kakvi se nama čine)
+
+\begin{table}[ht]
+\caption{The Lyric Assessor scores depending on model architecture and training time} % title of Table
+\centering % used for centering table
+\begin{tabular}{c c c c} % centered columns (4 columns)
+\hline\hline %inserts double horizontal lines
+Epochs & SimpleRNN & SimpleLSTM & BiLSTM\\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+20 & -0.9 & 1.9 & -4.3 \\ % inserting body of the table
+50 & 1.7 & 2.1 & 1.6 \\
+80 & -0.3 & 2.6 & 3.1 \\
+110 & 1.3 & 0.5 & 0.8 \\[1ex]
+\hline %inserts single line
+\end{tabular}
+\label{table:scores} % is used to refer this table in the text
+\end{table}
+
+Scores by the Lyric Assessor for generated lyrics  are given in Table ~\ref{table:scores}. It can be concluded from the scoring, 
+that for Simple LSTM results keep getting better up until 80 epochs. Training this particular model for more than 80 epochs decreases the score.
+The more complex model based on Bidirectional LSTM seems to achieve the best score - 3.1 for 80 epochs. This makes sense since the song lyrics 
+generated for this model after 80 epochs are almost identical to verses provided in the dataset, so The Lyric Assessor is more likely to consider 
+this song archetypically well-crafted.
+
 \subsection{Comparison by architecture}
-Usporediti sve arhitekture na 80 epoha i nabaciti pretpostavku zašto je kako je.
-Linkati lyricse koji su u Appendixu \ref{APDX}
+We compared the lyrics generated after 80 epochs by three different models. The generated lyrics can be found in the Appendix VII: \ref{LSTM80}, \ref{RNN80}, \ref{HID80}.
+When comparing the results, we look at how well the song is crafted in terms of syntax and semantics, and the similarity to what is generally perceived as 'well written' lyrics. 
+Simple RNN architecture generated lyrics where the verses lack syntactic sense and words following one another seem very random (\ref{RNN80}). 
+The most complex architecture based on Bidirectional LSTM generated lyrics which demonstrated overfitting. After training the model for 80 epochs, it generated song lyrics asssembled from verses identical to existing songs from the dataset.
+Architecture with one hidden LSTM layer and regularisation provided satisfactory results(\ref{LSTM80}). The generated lyrics improved in terms of syntax and semantics when compared to the ones generated by Simple RNN model. The words do not seem as random, while overfitting is avoided due to a balance of simpler architecture and right amount of epochs used for training the model.
+
 \subsection{Comparison by epoch}
 Usporediti generalno kako lyricsi zvuče na manje, odnosno više epoha i pokazati
 da to vrijedi za različite arhitekture.
@@ -191,7 +218,6 @@ Kako se mijenjala dobrota lyricsa prema loss funkciji
 Za dva artista oko kojih se dogovorimo: dvaput natreniramo onu arhitekturu koja
 daje najbolje rezultate na broj epoha koji daje najbolje rezultate.
 %Dylanometer
-
 
 \section{Comparison with existing solutions}
 For comparison, we have used an already existing project with a character-based approach with mild modifications.
