@@ -248,12 +248,23 @@ The more complex model based on Bidirectional LSTM seems to achieve the best sco
 generated for this model after 80 epochs are almost identical to verses provided in the dataset, so The Lyric Assessor is more likely to consider 
 this song archetypically well-crafted.
 
-Accuracy of the models during training can be seen in ``Fig.~\ref{fig}''.
+Comparison of the LSTM and RNN architectures during training can be seen in
+``Fig.~\ref{fig}'' (accuracy) and ``Fig.~\ref{fig2}'' (categorical crosentropy 
+loss). Despite being more accurate, SimpleRNN's generated lyrics aren't
+noticably better than SimpleLSTM, while the BiLSTM, being more complex
+produces the best results as expected. 
+
 
 \begin{figure}[htbp]
-\centerline{\includegraphics{fig1.png}}
+\centerline{\includegraphics[width=0.5\textwidth]{epochs.png}}
 \caption{Accuracy of the models}
 \label{fig}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.5\textwidth]{loss.png}}
+\caption{Categorical crossentropy of the models}
+\label{fig2}
 \end{figure}
 
 \subsection{Comparison by artist}
